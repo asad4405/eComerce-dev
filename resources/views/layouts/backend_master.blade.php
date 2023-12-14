@@ -40,9 +40,14 @@
     <!-- Plugins css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/date-picker.css">
 
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/bootstrap.css">
+
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/bootstrap-tagsinput.css">
 
     <!-- vector map css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vector-map.css">
@@ -50,8 +55,21 @@
     <!-- Slick Slider Css -->
     <link rel="stylesheet" href="{{ asset('backend_assets') }}/css/vendors/slick.css">
 
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/datatables.css">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/select2.min.css">
+
+    <!--Dropzon css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/dropzone.css">
+
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/bootstrap-tagsinput.css">
+
     <!-- App css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/style.css">
+
 </head>
 
 <body>
@@ -260,11 +278,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="products.html">Prodcts</a>
+                                            <a href="{{ route('product.create') }}">Add New Product</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-product.html">Add New Products</a>
+                                            <a href="{{ route('product.index') }}">Products</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -457,6 +475,26 @@
 
     <!-- Theme js -->
     <script src="{{ asset('backend_assets') }}/js/script.js"></script>
+
+    <!-- Data table js -->
+    <script src="{{ asset('backend_assets') }}/js/jquery.dataTables.js"></script>
+    <script src="{{ asset('backend_assets') }}/js/custom-data-table.js"></script>
+
+    <!-- select2 js -->
+    <script src="{{ asset('backend_assets') }}/js/select2.min.js"></script>
+    <script src="{{ asset('backend_assets') }}/js/select2-custom.js"></script>
+
+    <!--Dropzon js -->
+    <script src="{{ asset('backend_assets') }}/js/dropzone/dropzone.js"></script>
+    <script src="{{ asset('backend_assets') }}/js/dropzone/dropzone-script.js"></script>
+
+    <!-- ck editor js -->
+    <script src="{{ asset('backend_assets') }}/js/ckeditor.js"></script>
+    <script src="{{ asset('backend_assets') }}/js/ckeditor-custom.js"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="{{ asset('backend_assets') }}/js/bootstrap-tagsinput.min.js"></script>
+    {{-- <script src="{{ asset('backend_assets') }}/js/sidebar-menu.js"></script> --}}
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,11 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['aut
 
 
 // category //
-Route::resource('/category', CategoryController::class);
+Route::resource('/category', CategoryController::class)->middleware(['auth', 'verified', 'admin.checker']);
+
+// product //
+Route::resource('/product', ProductController::class)->middleware(['auth', 'verified', 'admin.checker']);
+
 
 // profile //
 Route::middleware('auth')->group(function () {
