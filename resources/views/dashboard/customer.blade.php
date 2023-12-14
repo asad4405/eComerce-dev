@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-            ================================================== -->
+                                                ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                ================================================== -->
+                                                    ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -68,10 +68,10 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- breadcrumb_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <div class="breadcrumb_section">
             <div class="container">
                 <ul class="breadcrumb_nav ul_li">
@@ -81,10 +81,10 @@
             </div>
         </div>
         <!-- breadcrumb_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- account_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="account_section section_space">
             <div class="container">
                 <div class="row">
@@ -107,6 +107,16 @@
                             <div class="tab-pane fade show active text-center" id="v-pills-home" role="tabpanel"
                                 aria-labelledby="v-pills-home-tab">
                                 <h5>Welcome to Account</h5>
+                                <h5>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <a href="route('logout')" class="btn btn-danger"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">Log Out</a>
+
+                                    </form>
+                                </h5>
                             </div>
                             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab">
@@ -162,10 +172,10 @@
             </div>
         </section>
         <!-- account_section - end
-        ================================================== -->
+                                            ================================================== -->
 
         <!-- newsletter_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -185,9 +195,9 @@
             </div>
         </section>
         <!-- newsletter_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
     </main>
     <!-- main body - end
-            ================================================== -->
+                                                ================================================== -->
 @endsection

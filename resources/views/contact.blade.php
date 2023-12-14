@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-            ================================================== -->
+                                ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                ================================================== -->
+                                    ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -68,10 +68,10 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                ================================================== -->
+                                    ================================================== -->
 
         <!-- breadcrumb_section - start
-                ================================================== -->
+                                    ================================================== -->
         <div class="breadcrumb_section">
             <div class="container">
                 <ul class="breadcrumb_nav ul_li">
@@ -81,10 +81,10 @@
             </div>
         </div>
         <!-- breadcrumb_section - end
-                ================================================== -->
+                                    ================================================== -->
 
         <!-- contact_section - start
-                ================================================== -->
+                                    ================================================== -->
         <div class="map_section">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.9147703055!2d-74.11976314309273!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbd!4v1547528325671"
@@ -92,10 +92,10 @@
             </iframe>
         </div>
         <!-- contact_section - end
-                ================================================== -->
+                                    ================================================== -->
 
         <!-- contact_section - start
-                ================================================== -->
+                                    ================================================== -->
         <section class="contact_section section_space">
             <div class="container">
                 <div class="row">
@@ -145,28 +145,41 @@
                             </div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua.</p>
-                            <form action="#">
+                            <form action="{{ route('contact.post') }}" method="POST">
+                                @csrf
                                 <div class="form_item">
-                                    <input id="contact-form-name" type="text" name="name" placeholder="Your Name">
+                                    <input id="contact-form-name" class="is-invalid" type="text" name="name" placeholder="Your Name">
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col col-md-6 col-sm-6">
                                         <div class="form_item">
                                             <input id="contact-form-email" type="email" name="email"
                                                 placeholder="Your Email">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col col-md-6 col-sm-6">
                                         <div class="form_item">
                                             <input type="text" name="subject" placeholder="Your Subject">
+                                            @error('subject')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form_item">
                                     <textarea id="contact-form-message" name="message" placeholder="Message"></textarea>
+                                    @error('message')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div id="form-msg"></div>
-                                <button id="contact-form-submit" type="submit" class="btn btn_dark">Send Message</button>
+                                <button type="submit" class="btn btn_dark">Send Message</button>
                             </form>
                         </div>
                     </div>
@@ -174,10 +187,10 @@
             </div>
         </section>
         <!-- contact_section - end
-                ================================================== -->
+                                    ================================================== -->
 
         <!-- newsletter_section - start
-                ================================================== -->
+                                    ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -197,9 +210,9 @@
             </div>
         </section>
         <!-- newsletter_section - end
-                ================================================== -->
+                                    ================================================== -->
 
     </main>
     <!-- main body - end
-            ================================================== -->
+                                ================================================== -->
 @endsection

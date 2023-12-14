@@ -8,6 +8,10 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard.customer');
+        if(auth()->user()->role == 'Admin'){
+            return view('dashboard.admin');
+        }else{
+            return view('dashboard.customer');
+        }
     }
 }

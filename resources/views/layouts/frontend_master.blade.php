@@ -182,7 +182,8 @@
                                                     Arrival Products</a></li>
                                             <li><a href="shop_list.html"><i class="icon icon-WorldWide"></i> Most
                                                     Popular Products</a></li>
-                                            <li><a href="shop_grid.html"><i class="icon icon-Star"></i> Deals of the
+                                            <li><a href="shop_grid.html"><i class="icon icon-Star"></i> Deals of
+                                                    the
                                                     day</a></li>
                                             <li><a href="shop_list.html"><i class="icon icon-Phone"></i> Mobile
                                                     Accessories</a></li>
@@ -190,7 +191,8 @@
                                                     Computer Accessories</a></li>
                                             <li><a href="shop_list.html"><i class="icon icon-Bulb"></i> Consumer
                                                     Electronics</a></li>
-                                            <li><a href="shop_grid.html"><i class="icon icon-Car"></i> Automobiles &
+                                            <li><a href="shop_grid.html"><i class="icon icon-Car"></i> Automobiles
+                                                    &
                                                     Motorcycles</a></li>
                                             <li><a href="shop_list.html"><i class="icon icon-Phone"></i> Mobile
                                                     Accessories</a></li>
@@ -198,7 +200,8 @@
                                                     Computer Accessories</a></li>
                                             <li><a href="shop_list.html"><i class="icon icon-Bulb"></i> Consumer
                                                     Electronics</a></li>
-                                            <li><a href="shop_grid.html"><i class="icon icon-Car"></i> Automobiles &
+                                            <li><a href="shop_grid.html"><i class="icon icon-Car"></i> Automobiles
+                                                    &
                                                     Motorcycles</a></li>
                                         </ul>
                                     </div>
@@ -231,7 +234,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ route('dashboard') }}">Jon Doe</a>
+                                        <a href="{{ route('dashboard') }}">{{ auth()->user()->name }}</a>
                                     </li>
 
                                     <li>
