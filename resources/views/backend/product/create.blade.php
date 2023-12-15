@@ -48,6 +48,16 @@
                                     </div>
 
                                     <div class="mb-4 row align-items-center">
+                                        <label class="form-label-title col-sm-3 mb-0">Product Name Details</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="product_name_details" class="form-control" rows="3"></textarea>
+                                            @error('product_name_details')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4 row align-items-center">
                                         <label class="form-label-title col-sm-3 mb-0">Product Short Details</label>
                                         <div class="col-sm-9">
                                             <textarea name="product_short_details" class="form-control" rows="4"></textarea>

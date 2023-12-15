@@ -67,6 +67,10 @@
     <!-- Bootstrap-tag input css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/vendors/bootstrap-tagsinput.css">
 
+    <!-- Selectize jQuery -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css" />
+
     <!-- App css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_assets') }}/css/style.css">
 
@@ -294,11 +298,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="attributes.html">Attributes</a>
+                                            <a href="{{ route('attribute.create') }}">Add Attribute</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-attributes.html">Add Attributes</a>
+                                            <a href="{{ route('attribute.index') }}">Attributes</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -495,6 +499,11 @@
     <!-- bootstrap tag-input js -->
     <script src="{{ asset('backend_assets') }}/js/bootstrap-tagsinput.min.js"></script>
     {{-- <script src="{{ asset('backend_assets') }}/js/sidebar-menu.js"></script> --}}
+
+    <!-- Selectize jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+
+    @yield('footer_scripts')
 </body>
 
 </html>

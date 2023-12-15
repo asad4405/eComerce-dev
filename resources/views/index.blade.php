@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-            ================================================== -->
+                                                ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                ================================================== -->
+                                                    ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -70,20 +70,22 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- slider_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="slider_section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 offset-lg-3">
                         <div class="main_slider" data-slick='{"arrows": false}'>
-                            <div class="slider_item set-bg-image" data-background="{{ asset('frontend_assets') }}/images/slider/slide-2.jpg">
+                            <div class="slider_item set-bg-image"
+                                data-background="{{ asset('frontend_assets') }}/images/slider/slide-2.jpg">
                                 <div class="slider_content">
                                     <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">Clothing</h3>
                                     <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">Smart blood
-                                        <span>Pressure monitor</span></h4>
+                                        <span>Pressure monitor</span>
+                                    </h4>
                                     <p data-animation="fadeInUp2" data-delay=".6s">The best gadgets collection 2021</p>
                                     <div class="item_price" data-animation="fadeInUp2" data-delay=".6s">
                                         <del>$430.00</del>
@@ -93,11 +95,13 @@
                                         data-delay=".8s">Start Buying</a>
                                 </div>
                             </div>
-                            <div class="slider_item set-bg-image" data-background="{{ asset('frontend_assets') }}/images/slider/slide-3.jpg">
+                            <div class="slider_item set-bg-image"
+                                data-background="{{ asset('frontend_assets') }}/images/slider/slide-3.jpg">
                                 <div class="slider_content">
                                     <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">Clothing</h3>
                                     <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">Smart blood
-                                        <span>Pressure monitor</span></h4>
+                                        <span>Pressure monitor</span>
+                                    </h4>
                                     <p data-animation="fadeInUp2" data-delay=".6s">The best gadgets collection 2021</p>
                                     <div class="item_price" data-animation="fadeInUp2" data-delay=".6s">
                                         <del>$430.00</del>
@@ -107,11 +111,13 @@
                                         data-delay=".8s">Start Buying</a>
                                 </div>
                             </div>
-                            <div class="slider_item set-bg-image" data-background="{{ asset('frontend_assets') }}/images/slider/slide-1.jpg">
+                            <div class="slider_item set-bg-image"
+                                data-background="{{ asset('frontend_assets') }}/images/slider/slide-1.jpg">
                                 <div class="slider_content">
                                     <h3 class="small_title" data-animation="fadeInUp2" data-delay=".2s">Clothing</h3>
                                     <h4 class="big_title" data-animation="fadeInUp2" data-delay=".4s">Smart blood
-                                        <span>Pressure monitor</span></h4>
+                                        <span>Pressure monitor</span>
+                                    </h4>
                                     <p data-animation="fadeInUp2" data-delay=".6s">The best gadgets collection 2021</p>
                                     <div class="item_price" data-animation="fadeInUp2" data-delay=".6s">
                                         <del>$430.00</del>
@@ -127,10 +133,10 @@
             </div>
         </section>
         <!-- slider_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- policy_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="policy_section">
             <div class="container">
                 <div class="row">
@@ -191,11 +197,11 @@
 
         </section>
         <!-- policy_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
 
         <!-- products-with-sidebar-section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="products-with-sidebar-section">
             <div class="container">
                 <div class="row">
@@ -203,200 +209,57 @@
                         <div class="best-selling-products">
                             <div class="sec-title-link">
                                 <h3>Best selling</h3>
-                                <div class="view-all"><a href="#">View all<i
+                                <div class="view-all"><a href="{{ route('shop') }}">View all<i
                                             class="fal fa-long-arrow-right"></i></a></div>
                             </div>
                             <div class="product-area clearfix">
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product_img_12.png" alt>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Macbook Pro</a></h4>
-                                        <p><a href="#">Apple MacBook Pro13.3″ Laptop with new Touch bar ID </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
+                                @forelse ($products as $product)
+                                    <div class="grid">
+                                        <div class="product-pic">
+                                            <a href="{{ route('shop.details', $product->id) }}">
+                                                <img src="{{ asset('uploads/product_photos') }}/{{ App\Models\Product_photo::where('product_id', $product->id)->get()->random()->product_photo }}"
+                                                    alt>
+                                                {{-- <img src="{{ asset('frontend_assets') }}/images/shop/product_img_12.png"
+                                                    alt> --}}
+                                            </a>
                                         </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-21.png" alt>
-                                        <span class="theme-badge">Sale</span>
-
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Apple Watch</a></h4>
-                                        <p><a href="#">Apple Watch Series 7 case Pair any band with cool design</a>
-                                        </p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
+                                        <div class="details">
+                                            <h4><a
+                                                    href="{{ route('shop.details', $product->id) }}">{{ $product->product_name }}</a>
+                                            </h4>
+                                            <p><a href="{{ route('shop.details', $product->id) }}">
+                                                    {{ $product->product_name_details }}
+                                                </a></p>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <span class="price">
+                                                <ins>
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <bdi>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span>471.48
+                                                        </bdi>
+                                                    </span>
+                                                </ins>
+                                            </span>
+                                            <div class="add-cart-area">
+                                                <button class="add-to-cart">Add to cart</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-22.png" alt>
-                                        <span class="theme-badge-2">12% off</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Mac Mini</a></h4>
-                                        <p><a href="#">Apple MacBook Pro13.3″ Laptop with new Touch bar ID </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                            <del aria-hidden="true">
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>904.21
-                                                    </bdi>
-                                                </span>
-                                            </del>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
+                                @empty
+                                    <div class="grid">
+                                        <div class="product-pic text-center text-danger">
+                                            <tr>
+                                                <td>No Available Product</td>
+                                            </tr>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-23.png" alt>
-                                        <span class="theme-badge">Sale</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">iPad mini</a></h4>
-                                        <p><a href="#">The ultimate iPad experience all over the world with coll
-                                                model </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-24.png" alt>
-                                        <span class="theme-badge-2">25% off</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Imac 29"</a></h4>
-                                        <p><a href="#">Apple iMac 29″ Laptop with new Touch bar ID for you </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                            <del aria-hidden="true">
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>904.21
-                                                    </bdi>
-                                                </span>
-                                            </del>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-25.png" alt>
-
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">iPhone 13</a></h4>
-                                        <p><a href="#">A dramatically more powerful camera system a display</a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforelse
                             </div>
                         </div>
 
@@ -409,7 +272,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_1.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_1.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">Men's Watches</span>
                                         </a>
@@ -420,7 +284,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_2.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_2.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">iPad</span>
                                         </a>
@@ -431,7 +296,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_3.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_3.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">iPhone</span>
                                         </a>
@@ -442,7 +308,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_4.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_4.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">Headphone</span>
                                         </a>
@@ -453,7 +320,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_5.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_5.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">Mac Mini</span>
                                         </a>
@@ -464,7 +332,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_1.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_1.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">Men's Watches</span>
                                         </a>
@@ -475,7 +344,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_2.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_2.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">CCTV Camera</span>
                                         </a>
@@ -486,7 +356,8 @@
                                     <div class="category_boxed">
                                         <a href="#!">
                                             <span class="item_image">
-                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_3.png" alt="image_not_found">
+                                                <img src="{{ asset('frontend_assets') }}/images/categories/category_3.png"
+                                                    alt="image_not_found">
                                             </span>
                                             <span class="item_title">CCTV Camera</span>
                                         </a>
@@ -514,221 +385,36 @@
                                     </div>
                                 </div>
                                 <div class="vertical_slider_4item" data-slick='{"dots": false}'>
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_1.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
+                                    @foreach ($latest_products as $latest_product)
+                                        <div class="slider_item">
+                                            <div class="small_product_layout">
+                                                <a class="item_image"
+                                                    href="{{ route('shop.details', $latest_product->id) }}">
+                                                    <img src="{{ asset('uploads/product_photos') }}/{{ App\Models\Product_photo::where('product_id', $latest_product->id)->get()->random()->product_photo }}"
+                                                        alt="image_not_found">
+                                                </a>
+                                                <div class="item_content">
+                                                    <h3 class="item_title">
+                                                        <a
+                                                            href="{{ route('shop.details', $latest_product->id) }}">{{ $latest_product->product_name }}</a>
+                                                    </h3>
+                                                    <ul class="rating_star ul_li">
+                                                        <li>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star-half-alt"></i>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="item_price">
+                                                        <span>$690.99</span>
+                                                        <del>$720.00</del>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_2.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_3.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_4.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_1.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_2.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_3.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="slider_item">
-                                        <div class="small_product_layout">
-                                            <a class="item_image" href="shop_details.html">
-                                                <img src="{{ asset('frontend_assets') }}/images/latest_product/latest_product_4.png"
-                                                    alt="image_not_found">
-                                            </a>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a href="shop_details.html">Product Sample</a>
-                                                </h3>
-                                                <ul class="rating_star ul_li">
-                                                    <li>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="item_price">
-                                                    <span>$690.99</span>
-                                                    <del>$720.00</del>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="widget product-add">
@@ -760,11 +446,11 @@
             </div> <!-- end container  -->
         </section>
         <!-- products-with-sidebar-section - end
-                ================================================== -->
+                                                    ================================================== -->
 
 
         <!-- promotion_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="promotion_section">
             <div class="container">
                 <div class="row promotion_banner_wrap">
@@ -799,10 +485,10 @@
             </div>
         </section>
         <!-- promotion_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- new_arrivals_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="new_arrivals_section section_space">
             <div class="container">
                 <div class="sec-title-link">
@@ -939,10 +625,10 @@
             </div>
         </section>
         <!-- new_arrivals_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- brand_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <div class="brand_section pb-0">
             <div class="container">
                 <div class="brand_carousel">
@@ -980,10 +666,10 @@
             </div>
         </div>
         <!-- brand_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- viewed_products_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="viewed_products_section section_space">
             <div class="container">
 
@@ -1218,10 +904,10 @@
             </div>
         </section>
         <!-- viewed_products_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
         <!-- newsletter_section - start
-                ================================================== -->
+                                                    ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -1241,9 +927,9 @@
             </div>
         </section>
         <!-- newsletter_section - end
-                ================================================== -->
+                                                    ================================================== -->
 
     </main>
     <!-- main body - end
-            ================================================== -->
+                                                ================================================== -->
 @endsection

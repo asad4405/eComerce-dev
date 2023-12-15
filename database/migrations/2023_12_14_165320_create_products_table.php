@@ -16,10 +16,12 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('category_id');
             $table->string('product_name');
+            $table->text('product_name_details');
             $table->longText('product_short_details');
             $table->longText('product_long_details');
             $table->longText('additional_info');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
+Route::get('/shop/details/{id}', [FrontendController::class, 'shop_details'])->name('shop.details');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/post', [FrontendController::class, 'contact_post'])->name('contact.post');
 
@@ -35,6 +37,10 @@ Route::resource('/category', CategoryController::class)->middleware(['auth', 've
 // product //
 Route::resource('/product', ProductController::class)->middleware(['auth', 'verified', 'admin.checker']);
 
+// attribute //
+Route::resource('/attribute',AttributeController::class);
+Route::post('/color/store',[AttributeController::class, 'color_store'])->name('color.store');
+Route::post('/size/store',[AttributeController::class, 'size_store'])->name('size.store');
 
 // profile //
 Route::middleware('auth')->group(function () {
