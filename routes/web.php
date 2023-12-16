@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductStockController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,8 +40,13 @@ Route::resource('/product', ProductController::class)->middleware(['auth', 'veri
 
 // attribute //
 Route::resource('/attribute',AttributeController::class);
-Route::post('/color/store',[AttributeController::class, 'color_store'])->name('color.store');
 Route::post('/size/store',[AttributeController::class, 'size_store'])->name('size.store');
+Route::post('/color/store',[AttributeController::class, 'color_store'])->name('color.store');
+
+// product stock //
+Route::resource('/stock',ProductStockController::class);
+
+
 
 // profile //
 Route::middleware('auth')->group(function () {

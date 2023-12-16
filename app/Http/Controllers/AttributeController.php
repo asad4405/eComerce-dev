@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ColorPostRequest;
+use App\Http\Requests\SizePostRequest;
 use App\Models\Attribute;
+use App\Models\Color;
+use App\Models\Size;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
@@ -12,7 +17,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        return view('backend.attribute.index');
+        $colors = Color::where('added_by', auth()->id())->get();
+        $sizes = Size::where('added_by', auth()->id())->get();
+        return view('backend.attribute.index', compact('colors', 'sizes'));
     }
 
     /**
@@ -26,11 +33,39 @@ class AttributeController extends Controller
     /**
      * Store a newly created custome in storage.
      */
-    public function color_store(Request $request)
+    public function size_store(SizePostRequest $request)
     {
-        // return $request->color_name;
-        foreach(explode(',',$request->color_name) as $color){
-            echo $color;
+        foreach (explode(',', $request->size_name) as $size) {
+            if (Size::where('size_name', $size)->exists()) {
+                return back()->with('error-size', 'This size Already Added!');
+            } else {
+                Size::insert([
+                    'added_by' => auth()->id(),
+                    'size_name' => $size,
+                    'created_at' => Carbon::now(),
+                ]);
+                return back()->with('add-size', 'New Size Added Successfull!');
+            };
+        }
+    }
+
+
+    /**
+     * Store a newly created custome in storage.
+     */
+    public function color_store(ColorPostRequest $request)
+    {
+        foreach (explode(',', $request->color_name) as $color) {
+            if (Color::where('color_name', $color)->exists()) {
+                return back()->with('error-color', 'This color Already Added!');
+            } else {
+                Color::insert([
+                    'added_by' => auth()->id(),
+                    'color_name' => $color,
+                    'created_at' => Carbon::now(),
+                ]);
+                return back()->with('add-color', 'New Color Added Successfull!');
+            };
         }
     }
 
