@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Color;
 use App\Models\Inventory;
 use App\Models\Product;
-use App\Models\ProductStock;
 use App\Models\Size;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +16,8 @@ class ProductStockController extends Controller
      */
     public function index()
     {
-        return view('backend.product_stock.index');
+        $inventories = Inventory::where('user_id',auth()->id())->get();
+        return view('backend.product_stock.index',compact('inventories'));
     }
 
     /**
@@ -39,24 +39,38 @@ class ProductStockController extends Controller
         $request->validate([
             '*' => 'required',
         ]);
-        Inventory::insert([
+
+        if($request->regular_price < $request->discount_price){
+            return back()->with('product-price-error','Regular Price can not be less then discount price!');
+        }
+
+        if(Inventory::where([
             'user_id' => auth()->id(),
             'product_id' => $request->product_id,
             'size_id' => $request->size_id,
             'color_id' => $request->color_id,
-            'product_quantity' => $request->product_quantity,
-            'regular_price' => $request->regular_price,
-            'discount_price' => $request->discount_price,
-            'created_at' => Carbon::now(),
-        ]);
+        ])->exists()){
+            return back()->with('product-stock-error','Product Stock Already Added!');
+        }else{
+            Inventory::insert([
+                'user_id' => auth()->id(),
+                'product_id' => $request->product_id,
+                'size_id' => $request->size_id,
+                'color_id' => $request->color_id,
+                'product_quantity' => $request->product_quantity,
+                'regular_price' => $request->regular_price,
+                'discount_price' => $request->discount_price,
+                'created_at' => Carbon::now(),
+            ]);
 
-        return back()->with('','');
+            return back()->with('product-stock-success','Product Stack Added Successfull!');
+        };
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ProductStock $productStock)
+    public function show(Inventory $inventory)
     {
         //
     }
@@ -64,15 +78,18 @@ class ProductStockController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductStock $productStock)
+    public function edit(Inventory $inventory)
     {
-        //
+        $products = Product::all();
+        $sizes = Size::where('added_by',auth()->id())->get();
+        $colors = Color::where('added_by',auth()->id())->get();
+        return view('backend.product_stock.edit',compact('inventory','products','sizes','colors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductStock $productStock)
+    public function update(Request $request, Inventory $inventory)
     {
         //
     }
@@ -80,7 +97,7 @@ class ProductStockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductStock $productStock)
+    public function destroy(Inventory $inventory)
     {
         //
     }

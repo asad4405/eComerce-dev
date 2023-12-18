@@ -16,6 +16,14 @@
                                     <div class="alert alert-success">{{ session('product-stock-success') }}</div>
                                 @endif
 
+                                @if (session('product-stock-error'))
+                                    <div class="alert alert-secondary">{{ session('product-stock-error') }}</div>
+                                @endif
+
+                                @if (session('product-price-error'))
+                                    <div class="alert alert-secondary">{{ session('product-price-error') }}</div>
+                                @endif
+
                                 <form class="theme-form theme-form-2 mega-form" action="{{ route('stock.store') }}"
                                     method="POST">
                                     @csrf
