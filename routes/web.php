@@ -24,6 +24,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/shop/details/{id}', [FrontendController::class, 'shop_details'])->name('shop.details');
+Route::post('/color/list',[FrontendController::class, 'color_list'])->name('color.list');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/post', [FrontendController::class, 'contact_post'])->name('contact.post');
 

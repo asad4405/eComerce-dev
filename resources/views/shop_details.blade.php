@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-                ================================================== -->
+                                                                                                                                                                                                                                ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -68,89 +68,55 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- breadcrumb_section - start
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
         <div class="breadcrumb_section">
             <div class="container">
                 <ul class="breadcrumb_nav ul_li">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                     <li>Product Details</li>
                 </ul>
             </div>
         </div>
         <!-- breadcrumb_section - end
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- product_details - start
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
         <section class="product_details section_space pb-0">
             <div class="container">
                 <div class="row">
                     <div class="col col-lg-6">
                         <div class="product_details_image">
                             <div class="details_image_carousel">
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_1.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_2.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_3.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_4.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_1.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_2.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_3.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_4.png" alt="image_not_found">
-                                </div>
+
+                                @foreach (App\Models\Product_photo::where('product_id', $product->id)->get() as $product_photo)
+                                    <div class="slider_item">
+                                        <img src="{{ asset('uploads/product_photos') }}/{{ $product_photo->product_photo }}"
+                                            alt="image_not_found">
+                                    </div>
+                                @endforeach
                             </div>
 
                             <div class="details_image_carousel_nav">
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_1.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_2.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_3.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_4.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_1.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_2.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_3.png" alt="image_not_found">
-                                </div>
-                                <div class="slider_item">
-                                    <img src="{{ asset('frontend_assets') }}/images/details/product_details_img_4.png" alt="image_not_found">
-                                </div>
+                                @foreach (App\Models\Product_photo::where('product_id', $product->id)->get() as $product_photo)
+                                    <div class="slider_item">
+                                        <img src="{{ asset('uploads/product_photos') }}/{{ $product_photo->product_photo }}"
+                                            alt="image_not_found">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="product_details_content">
-                            <h2 class="item_title">CURREN 8109 Watches</h2>
-                            <p>It is a long established fact that a reader will be distracted eget velit. Donec ac tempus
-                                ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate</p>
+                            <h2 class="item_title">{{ $product->product_name }}</h2>
+                            <p>
+                                {{ $product->product_short_details }}
+                            </p>
                             <div class="item_review">
                                 <ul class="rating_star ul_li">
                                     <li><i class="fas fa-star"></i>></li>
@@ -176,10 +142,10 @@
                                                 <h4 class="input_title">Size *</h4>
                                                 <select>
                                                     <option data-display="- Please select -">Choose A Option</option>
-                                                    <option value="1">Some option</option>
-                                                    <option value="2">Another option</option>
-                                                    <option value="3" disabled>A disabled option</option>
-                                                    <option value="4">Potato</option>
+                                                    @foreach ($available_sizes as $available_size)
+                                                        <option value="{{ $available_size->size->id }}">{{ $available_size->size->size_name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -188,10 +154,10 @@
                                                 <h4 class="input_title">Color *</h4>
                                                 <select>
                                                     <option data-display="- Please select -">Choose A Option</option>
-                                                    <option value="1">Some option</option>
-                                                    <option value="2">Another option</option>
-                                                    <option value="3" disabled>A disabled option</option>
-                                                    <option value="4">Potato</option>
+                                                    @foreach ($colors as $color)
+                                                        <option value="{{ $color->id }}">{{ $color->color_name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -311,7 +277,8 @@
                                 <h4 class="reviews_tab_title">2 reviews for this product</h4>
                                 <div class="customer_review_item clearfix">
                                     <div class="customer_image">
-                                        <img src="{{ asset('frontend_assets') }}/images/team/team_1.jpg" alt="image_not_found">
+                                        <img src="{{ asset('frontend_assets') }}/images/team/team_1.jpg"
+                                            alt="image_not_found">
                                     </div>
                                     <div class="customer_content">
                                         <div class="customer_info">
@@ -331,7 +298,8 @@
 
                                 <div class="customer_review_item clearfix">
                                     <div class="customer_image">
-                                        <img src="{{ asset('frontend_assets') }}/images/team/team_2.jpg" alt="image_not_found">
+                                        <img src="{{ asset('frontend_assets') }}/images/team/team_2.jpg"
+                                            alt="image_not_found">
                                     </div>
                                     <div class="customer_content">
                                         <div class="customer_info">
@@ -381,10 +349,10 @@
             </div>
         </section>
         <!-- product_details - end
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- related_products_section - start
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
         <section class="related_products_section section_space">
             <div class="container">
                 <div class="row">
@@ -526,10 +494,10 @@
             </div>
         </section>
         <!-- related_products_section - end
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- newsletter_section - start
-                    ================================================== -->
+                                                                                                                                                                                                                                    ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -548,10 +516,9 @@
                 </div>
             </div>
         </section>
-        <!-- newsletter_section - end
-                    ================================================== -->
-
     </main>
-    <!-- main body - end
-                ================================================== -->
+@endsection
+
+@section('footer_scripts')
+
 @endsection

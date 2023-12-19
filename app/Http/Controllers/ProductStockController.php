@@ -16,8 +16,8 @@ class ProductStockController extends Controller
      */
     public function index()
     {
-        $inventories = Inventory::where('user_id',auth()->id())->get();
-        return view('backend.product_stock.index',compact('inventories'));
+        $inventories = Inventory::where('user_id', auth()->id())->latest()->get();
+        return view('backend.product_stock.index', compact('inventories'));
     }
 
     /**
@@ -25,10 +25,10 @@ class ProductStockController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        $sizes = Size::where('added_by',auth()->id())->get();
-        $colors = Color::where('added_by',auth()->id())->get();
-        return view('backend.product_stock.create',compact('products','sizes','colors'));
+        $products = Product::where('user_id', auth()->id())->get();
+        $sizes = Size::where('added_by', auth()->id())->get();
+        $colors = Color::where('added_by', auth()->id())->get();
+        return view('backend.product_stock.create', compact('products', 'sizes', 'colors'));
     }
 
     /**
@@ -40,18 +40,18 @@ class ProductStockController extends Controller
             '*' => 'required',
         ]);
 
-        if($request->regular_price < $request->discount_price){
-            return back()->with('product-price-error','Regular Price can not be less then discount price!');
+        if ($request->regular_price < $request->discount_price) {
+            return back()->with('product-price-error', 'Regular Price can not be less then discount price!');
         }
 
-        if(Inventory::where([
+        if (Inventory::where([
             'user_id' => auth()->id(),
             'product_id' => $request->product_id,
             'size_id' => $request->size_id,
             'color_id' => $request->color_id,
-        ])->exists()){
-            return back()->with('product-stock-error','Product Stock Already Added!');
-        }else{
+        ])->exists()) {
+            return back()->with('product-stock-error', 'Product Stock Already Added!');
+        } else {
             Inventory::insert([
                 'user_id' => auth()->id(),
                 'product_id' => $request->product_id,
@@ -63,7 +63,7 @@ class ProductStockController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-            return back()->with('product-stock-success','Product Stack Added Successfull!');
+            return back()->with('product-stock-success', 'Product Stack Added Successfull!');
         };
     }
 
@@ -80,10 +80,10 @@ class ProductStockController extends Controller
      */
     public function edit(Inventory $inventory)
     {
-        $products = Product::all();
-        $sizes = Size::where('added_by',auth()->id())->get();
-        $colors = Color::where('added_by',auth()->id())->get();
-        return view('backend.product_stock.edit',compact('inventory','products','sizes','colors'));
+        // $products = Product::where('user_id', auth()->id())->get();
+        // $sizes = Size::where('added_by', auth()->id())->get();
+        // $colors = Color::where('added_by', auth()->id())->get();
+        // return view('backend.product_stock.edit', compact('inventory', 'products', 'sizes', 'colors'));
     }
 
     /**

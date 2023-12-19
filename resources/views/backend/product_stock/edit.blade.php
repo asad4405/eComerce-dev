@@ -1,4 +1,4 @@
-@extends('layouts.backend_master')
+{{-- @extends('layouts.backend_master')
 @section('content')
     <!-- New Product Add Start -->
     <div class="container-fluid">
@@ -126,4 +126,4 @@
         </div>
     </div>
     <!-- New Product Add End -->
-@endsection
+@endsection --}}

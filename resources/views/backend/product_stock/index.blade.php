@@ -20,6 +20,7 @@
                                 <table class="table all-package theme-table table-product" id="table_id">
                                     <thead>
                                         <tr>
+                                            <th>SL</th>
                                             <th>Product Image</th>
                                             <th>Product Name</th>
                                             <th>Color</th>
@@ -34,6 +35,8 @@
                                     <tbody>
                                         @foreach ($inventories as $inventory)
                                             <tr>
+                                                <td>{{ $loop->index+1 }}</td>
+                                                
                                                 <td>
                                                     <div class="table-image">
                                                         <img src="{{ asset('uploads/product_photos') }}/{{ App\Models\Product_photo::where('product_id', $inventory->product->id)->get()->random()->product_photo }}"
@@ -49,7 +52,15 @@
 
                                                 <td>{{ $inventory->product_quantity }}</td>
 
-                                                <td class="td-price">{{ $inventory->discount_price }}</td>
+                                                <td class="td-price">
+                                                    @if ($inventory->discount_price == $inventory->regular_price)
+                                                        ${{ $inventory->discount_price }}
+                                                    @else
+                                                        ${{ $inventory->discount_price }}
+                                                        &nbsp;&nbsp;
+                                                        <del class="text-danger">${{ $inventory->regular_price }}</del>
+                                                    @endif
+                                                </td>
 
                                                 @if ($inventory->product_quantity > 0)
                                                     <td class="status-close">
@@ -64,7 +75,8 @@
                                                 <td>
                                                     <ul>
                                                         <li>
-                                                            <a href="{{ route('stock.edit',$inventory->id) }}" class="btn btn-sm btn-info">
+                                                            <a href="{{ route('stock.edit', $inventory->id) }}"
+                                                                class="btn btn-sm btn-info">
                                                                 Edit
                                                             </a>
                                                         </li>
