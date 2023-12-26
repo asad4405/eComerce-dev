@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-                                                                                                                                                                                                                                ================================================== -->
+                                                                                                                                                                                                                                                                                ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -68,10 +68,10 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- breadcrumb_section - start
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
         <div class="breadcrumb_section">
             <div class="container">
                 <ul class="breadcrumb_nav ul_li">
@@ -81,10 +81,10 @@
             </div>
         </div>
         <!-- breadcrumb_section - end
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- product_details - start
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
         <section class="product_details section_space pb-0">
             <div class="container">
                 <div class="row">
@@ -129,8 +129,11 @@
                             </div>
 
                             <div class="item_price">
-                                <span>$620.00</span>
-                                <del>$720.00</del>
+                                <span id="discount_price">$620.00</span>
+                                <del id="regular_price">$720.00</del>
+                            </div>
+                            <div>
+                                <span id="product_stock"></span>
                             </div>
                             <hr>
 
@@ -140,10 +143,11 @@
                                         <div class="col col-md-6">
                                             <div class="select_option clearfix">
                                                 <h4 class="input_title">Size *</h4>
-                                                <select>
-                                                    <option data-display="- Please select -">Choose A Option</option>
+                                                <select id="size_dropdown">
+                                                    <option data-display="- Please select -">- Choose One Color -</option>
                                                     @foreach ($available_sizes as $available_size)
-                                                        <option value="{{ $available_size->size->id }}">{{ $available_size->size->size_name }}
+                                                        <option value="{{ $available_size->size->id }}">
+                                                            {{ $available_size->size->size_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -152,12 +156,8 @@
                                         <div class="col col-md-6">
                                             <div class="select_option clearfix">
                                                 <h4 class="input_title">Color *</h4>
-                                                <select>
-                                                    <option data-display="- Please select -">Choose A Option</option>
-                                                    @foreach ($colors as $color)
-                                                        <option value="{{ $color->id }}">{{ $color->color_name }}
-                                                        </option>
-                                                    @endforeach
+                                                <select id="color_dropdown">
+                                                    <option value=''>- Select Size First -</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@
                                     <button type="button" class="input_number_decrement">
                                         <i class="fal fa-minus"></i>
                                     </button>
-                                    <input class="input_number" type="text" value="1">
+                                    <input class="input_number" type="text" value="1" id="user_input" name="quantity">
                                     <button type="button" class="input_number_increment">
                                         <i class="fal fa-plus"></i>
                                     </button>
@@ -178,7 +178,16 @@
                             </div>
 
                             <ul class="default_btns_group ul_li">
-                                <li><a class="btn btn_primary addtocart_btn" href="#!">Add To Cart</a></li>
+                                <li>
+                                    @auth
+                                        <button class="btn btn_primary addtocart_btn d-none" id="add_to_cart">
+                                            Add To Cart
+                                        @else
+                                            <a class="btn btn_primary addtocart_btn d-none" href="{{ route('login') }}"
+                                                id="add_to_cart">Login</a>
+                                        @endauth
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                         </form>
@@ -349,10 +358,10 @@
             </div>
         </section>
         <!-- product_details - end
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- related_products_section - start
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
         <section class="related_products_section section_space">
             <div class="container">
                 <div class="row">
@@ -393,100 +402,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-21.png" alt>
-                                        <span class="theme-badge">Sale</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Apple Watch</a></h4>
-                                        <p><a href="#">Apple Watch Series 7 case Pair any band </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-22.png" alt>
-                                        <span class="theme-badge-2">12% off</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">Mac Mini</a></h4>
-                                        <p><a href="#">Apple MacBook Pro13.3″ Laptop with Touch ID </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                            <del aria-hidden="true">
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>904.21
-                                                    </bdi>
-                                                </span>
-                                            </del>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid">
-                                    <div class="product-pic">
-                                        <img src="{{ asset('frontend_assets') }}/images/shop/product-img-23.png" alt>
-                                        <span class="theme-badge">Sale</span>
-                                    </div>
-                                    <div class="details">
-                                        <h4><a href="#">iPad mini</a></h4>
-                                        <p><a href="#">The ultimate iPad experience all over the world </a></p>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </div>
-                                        <span class="price">
-                                            <ins>
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>471.48
-                                                    </bdi>
-                                                </span>
-                                            </ins>
-                                        </span>
-                                        <div class="add-cart-area">
-                                            <button class="add-to-cart">Add to cart</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -494,10 +409,10 @@
             </div>
         </section>
         <!-- related_products_section - end
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
 
         <!-- newsletter_section - start
-                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -520,5 +435,79 @@
 @endsection
 
 @section('footer_scripts')
+    <script>
+        $(document).ready(function() {
+            $('#size_dropdown').change(function() {
+                var product_id = {{ $product->id }};
+                var size_id = $(this).val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // ajax code start
+                $.ajax({
+                    type: 'POST',
+                    url: '/color/list',
+                    data: {
+                        product_id: product_id,
+                        size_id: size_id,
+                    },
+                    success: function(data) {
+                        $('#add_to_cart').addClass('d-none');
 
+                        $('#color_dropdown').html(data);
+                    }
+                });
+                // ajax code end
+            });
+
+            $('#color_dropdown').change(function() {
+                var product_id = {{ $product->id }};
+                var size_id = $('#size_dropdown').val();
+                var color_id = $(this).val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // ajax code start
+                $.ajax({
+                    type: 'POST',
+                    url: '/price/qunatity',
+                    data: {
+                        product_id: product_id,
+                        size_id: size_id,
+                        color_id: color_id
+                    },
+                    success: function(data) {
+                        if (data.split('#')[2] == 0) {
+                            $('#add_to_cart').addClass('d-none');
+                            $('#discount_price').html('Stock Out');
+                        } else {
+                            $('#add_to_cart').removeClass('d-none');
+
+                            $('#discount_price').html('$' + data.split('#')[0]);
+                            $('#regular_price').html('$' + data.split('#')[1]);
+                            $('#product_stock').html(data.split('#')[2]);
+                        }
+                    }
+                });
+                // ajax code end
+            });
+
+            $('#add_to_cart').click(function() {
+                var product_stock = ('#product_stock').html();
+                var user_input = ('#user_input').val();
+                alert(user_input)
+                // if(parseInt(product_stock) < parseInt(user_input)){
+                //     alert('besi hoise')
+                // }
+
+                // var product_id = {{ $product->id }};
+                // var size_id = $('#size_dropdown').val();
+                // var color_id = $('#color_dropdown').val();
+            });
+        });
+    </script>
 @endsection
