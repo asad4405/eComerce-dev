@@ -1,11 +1,11 @@
 @extends('layouts.frontend_master')
 @section('content')
     <!-- main body - start
-                                                                                                                                                                                                                                                                                ================================================== -->
+                                                                                                                                                                                                                                                                                    ================================================== -->
     <main>
 
         <!-- sidebar cart - start
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
         <div class="sidebar-menu-wrapper">
             <div class="cart_sidebar">
                 <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
@@ -68,10 +68,10 @@
             <div class="cart_overlay"></div>
         </div>
         <!-- sidebar cart - end
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
 
         <!-- breadcrumb_section - start
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
         <div class="breadcrumb_section">
             <div class="container">
                 <ul class="breadcrumb_nav ul_li">
@@ -81,10 +81,10 @@
             </div>
         </div>
         <!-- breadcrumb_section - end
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
 
         <!-- product_details - start
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
         <section class="product_details section_space pb-0">
             <div class="container">
                 <div class="row">
@@ -169,7 +169,8 @@
                                     <button type="button" class="input_number_decrement">
                                         <i class="fal fa-minus"></i>
                                     </button>
-                                    <input class="input_number" type="text" value="1" id="user_input" name="quantity">
+                                    <input class="input_number" type="text" value="1" id="user_input"
+                                        name="quantity">
                                     <button type="button" class="input_number_increment">
                                         <i class="fal fa-plus"></i>
                                     </button>
@@ -358,10 +359,10 @@
             </div>
         </section>
         <!-- product_details - end
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
 
         <!-- related_products_section - start
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
         <section class="related_products_section section_space">
             <div class="container">
                 <div class="row">
@@ -409,10 +410,10 @@
             </div>
         </section>
         <!-- related_products_section - end
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
 
         <!-- newsletter_section - start
-                                                                                                                                                                                                                                                                                    ================================================== -->
+                                                                                                                                                                                                                                                                                        ================================================== -->
         <section class="newsletter_section">
             <div class="container">
                 <div class="row align-items-center">
@@ -497,12 +498,18 @@
             });
 
             $('#add_to_cart').click(function() {
-                var product_stock = ('#product_stock').html();
-                var user_input = ('#user_input').val();
-                alert(user_input)
-                // if(parseInt(product_stock) < parseInt(user_input)){
-                //     alert('besi hoise')
-                // }
+                var product_stock = $('#product_stock').html();
+                var user_input = $('#user_input').val();
+
+                if (parseInt(product_stock) < parseInt(user_input)) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+                }else{
+                    alert('thik ase')
+                }
 
                 // var product_id = {{ $product->id }};
                 // var size_id = $('#size_dropdown').val();
