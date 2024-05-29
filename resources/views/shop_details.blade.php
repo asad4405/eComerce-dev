@@ -144,7 +144,7 @@
                                             <div class="select_option clearfix">
                                                 <h4 class="input_title">Size *</h4>
                                                 <select id="size_dropdown">
-                                                    <option data-display="- Please select -">- Choose One Color -</option>
+                                                    <option data-display="- Please select -">- Choose One Size -</option>
                                                     @foreach ($available_sizes as $available_size)
                                                         <option value="{{ $available_size->size->id }}">
                                                             {{ $available_size->size->size_name }}
